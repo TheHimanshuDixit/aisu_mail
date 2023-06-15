@@ -119,8 +119,14 @@ if (isset($_POST['submit'])) {
         </html>";
 
         $mail->send();
-        echo '<h1 style="color: green" >Thank You, Message has been Sent.';
+        echo '<script>
+                alert("Thank you for your interest in joining our community. we will contact you soon.");
+                window.location.href = "https://aisu4india.in/";
+            </script>';
     } catch (Exception $e) {
-        echo '<h1 style="color:red" > Something Wrong. </h1>';
+        echo '<script>
+                alert("Please try again later.");
+                window.location.href = "https://aisu4india.in/join-us/";
+            </script>';
     }
 }

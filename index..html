@@ -49,6 +49,10 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">AISU Pamphlet</a>
           </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5500/server/aisu_mail/login.html">Login</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -93,7 +97,7 @@
         </em>
       </p>
 
-      <form action="send_email.php" method="post">
+      <form action="send_email.php" id="myForm" method="post" enctype="multipart/form-data">
         <p style="color: #fc8c35;">* Indicates required question
         </p>
         <div class="mb-3">
@@ -285,6 +289,7 @@
           <li><a href="#">AISU in Media</a></li>
           <li><a href="#">Contact</a></li>
           <li><a href="#">AISU Pamphlet</a></li>
+          <li><a href="http://127.0.0.1:5500/server/aisu_mail/login.html">Login</a></li>
 
         </ul>
       </div>
@@ -306,6 +311,9 @@
       </div>
     </div>
   </footer>
+  <script src="./script.js">
+  </script>
+  
 </body>
 
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <a href="http://127.0.0.1:5500/server/aisu_mail/update.html">Update credentials</a>
+    <div class="data" id="data">
+        <h1>Loading...</h1>
+    </div>
+    <script>
+        // Check if jwt exists in localStorage
+        const jwt = localStorage.getItem("jwt");
+        const handlelogout = () => {
+            try {
+                localStorage.clear();
+                window.location = 'http://127.0.0.1:5500/server/aisu_mail/login.html'
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        const handlePostDelete = async (_id) => {
+            try {
+                const url = `http://localhost:8000/api/post/${_id}`;
+                const response = await fetch(url, {
+                    method: 'DELETE',
+                });
+
+                if (response.ok) {
+                    console.log('Post deleted successfully');
+                    // Refresh the page to reflect the updated post list
+                    window.location.href = "http://127.0.0.1:5500/server/aisu_mail/home.html";
+                } else {
+                    console.log('Failed to delete post');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+
+        // Get the data div element
+        const dataDiv = document.getElementById("data");
+
+        if (jwt) {
+            fetch('http://localhost:8000/api/post/posts')
+                .then(response => response.json())
+                .then(data => {
+
+                    // Accumulate the HTML content for all objects
+                    let htmlContent = "";
+
+                    // Fill the fields in the HTML for each object
+                    data.reverse().forEach(entry => {
+                        const filenameBuffer = entry.formfile.data.data;
+                        const uint8Array = new Uint8Array(filenameBuffer);
+                        const filename = String.fromCharCode.apply(null, uint8Array);
+                        const imageurl = `http://localhost:8000/api/post/formfile/${encodeURIComponent(filename)}`;
+
+                        htmlContent += `
+                        <button onclick="handlePostDelete('${entry._id}')">Delete</button>
+                            <p>Name: ${entry.name}</p>
+                            <p>Email: ${entry.email}</p>
+                            <p>Gender: ${entry.gender}</p>
+                            <p>Date of Birth: ${entry.dob}</p>
+                            <p>Contact: ${entry.contact}</p>
+                            <p>Address: ${entry.address}</p>
+                            <p>City: ${entry.city}</p>
+                            <p>State: ${entry.state}</p>
+                            <p>Pincode: ${entry.pincode}</p>
+                            <p>University: ${entry.university}</p>
+                            <p>Why AISU: ${entry.whyAISU}</p>
+                            <p>Hear AISU: ${entry.hearAISU}</p>
+                            <p>How AISU: ${entry.howAISU}</p>
+                            <img style="width: 100px, height:100px" src=${imageurl} alt="Profile" />
+                            <hr> <!-- Add a separator between entries -->
+                        `;
+                    });
+
+                    // Set the accumulated HTML content
+                    dataDiv.innerHTML = `
+                    <button onclick="handlelogout()">Logout</button>
+                        ${htmlContent}
+                    `;
+                })
+                .catch(error => {
+                    console.error(error);
+                    dataDiv.innerHTML = "<h1>Error fetching data. Please try again later.</h1>";
+                });
+        } else {
+            // Display content when jwt is null
+            dataDiv.innerHTML = "<h1>You need to log in to access this page.</h1>";
+        }
+    </script>
+</body>
+
+</html>

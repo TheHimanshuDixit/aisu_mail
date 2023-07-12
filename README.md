@@ -9,11 +9,12 @@ https://thehimanshudixit.github.io/aisu_mail_updated/
 
 
 ## Tech Stack
-```
 **Frontend:** Html, CSS, Js
+
 **Backend:** Node, Express, Php
+
 **Database:** MySQL
-```
+
 
 # Screenshot
 

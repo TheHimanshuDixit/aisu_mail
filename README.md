@@ -1,6 +1,54 @@
-# AISU MEMBERSHIP FORM
-## To Start Backend
-1. in the terminal of the project, go to aisu_mail- cd server/aisu_mail
-2. Install all the dependencies by typing ``npm install`` in the terminal.
-3. Open the .env file in aisu_mail folder and add necessary details:- Port, DB(database url) and json secret key.
-4. Now run the project by typing ``npm start`` in the terminal.
+# aisu NGO
+A full working portal for AISU with backend.
+
+
+## Demo Link
+```
+https://thehimanshudixit.github.io/aisu_mail_updated/
+```
+
+
+## Tech Stack
+```
+**Frontend:** Html, CSS, Js
+**Backend:** Node, Express, Php
+**Database:** MySQL
+```
+
+# Screenshot
+
+![Screenshot 2023-07-12 215002](https://github.com/TheHimanshuDixit/aisu_mail/assets/107857348/0f1b886b-3332-4d53-b1e6-104add683191)
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://link-to-project
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Open the .env
+
+```
+  add necessary details Port, DB(database url) and json secret key.
+```
+
+Start the server
+
+```bash
+  npm run start
+```
+
